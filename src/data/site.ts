@@ -29,7 +29,7 @@ export const siteConfig = {
   siteUrl: "https://aprendamosjuntoscr.netlify.app",
   subjects: ["Matemáticas", "Física", "Química", "Biología", "Inglés", "Estudios Sociales"],
   teacherProfile:
-    "Bachiller en Enseñanza de las Ciencias, experiencia en acompañamiento académico y clases conversacionales en inglés.",
+    "Licenciado en Enseñanza de las Ciencias, experiencia en acompañamiento académico y clases conversacionales en inglés.",
   benefits: [
     {
       title: "Diagnóstico desde la primera sesión",
