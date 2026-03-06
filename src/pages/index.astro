@@ -1,0 +1,73 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { buildWhatsAppUrl, siteConfig } from "@/data/site";
+
+const primaryCta = buildWhatsAppUrl(
+  "Hola, quiero agendar una clase de prueba de lecciones privadas bimodales."
+);
+const resourcesUrl = siteConfig.resourcesUrl;
+---
+
+<BaseLayout title="Lecciones privadas en Turrialba" canonical="/">
+  <header class="hero">
+    <div class="container">
+      <div class="hero-panel">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Clases privadas bimodales</p>
+            <h1>Aprender con estrategia, no con estrés.</h1>
+            <p>
+              Base Astro lista. En esta fase dejamos la arquitectura y la dirección visual que
+              usaremos para convertir esta página en una landing comercial enfocada en WhatsApp.
+            </p>
+            <div class="btn-row">
+              <a class="btn btn-primary" href={primaryCta} target="_blank" rel="noopener noreferrer">
+                Escribir por WhatsApp
+              </a>
+              <a class="btn btn-secondary" href={resourcesUrl} target="_blank" rel="noopener noreferrer">
+                Ver recursos gratuitos
+              </a>
+            </div>
+          </div>
+
+          <div class="card" aria-label="Datos base del servicio">
+            <p class="eyebrow">Configuración central</p>
+            <p><strong>Marca:</strong> {siteConfig.brandName}</p>
+            <p><strong>Ubicación:</strong> {siteConfig.location}</p>
+            <p><strong>Materias:</strong> {siteConfig.subjects.join(" · ")}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="beneficios">
+      <div class="container">
+        <p class="eyebrow">Fase 1</p>
+        <h2 class="section-title">Esqueleto listo para la reinvención completa</h2>
+        <p class="section-lead">
+          En el siguiente commit se reemplaza este contenido temporal por la landing final de alta
+          conversión con copy comercial, prueba social, pricing y FAQ.
+        </p>
+
+        <div class="grid-2" style="margin-top:1.5rem;">
+          <article class="card">
+            <h3>Asset curado 1</h3>
+            <img src="/images/impacto-1.jpeg" alt="Material de aprendizaje" width="540" height="720" />
+          </article>
+          <article class="card">
+            <h3>Asset curado 2</h3>
+            <img src="/images/impacto-2.jpeg" alt="Ejercicios guiados" width="540" height="720" />
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© {new Date().getFullYear()} {siteConfig.brandName}. Proyecto en reinvención por fases.</p>
+    </div>
+  </footer>
+</BaseLayout>

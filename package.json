@@ -1,0 +1,16 @@
+{
+  "name": "aprendamosjuntoscr",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Landing de alta conversión para Lecciones Privadas Bimodales",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^5.18.0"
+  }
+}

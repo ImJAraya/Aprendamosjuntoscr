@@ -1,0 +1,40 @@
+---
+import "@/styles/global.css";
+import { siteConfig } from "@/data/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title = siteConfig.brandName,
+  description = "Clases privadas presenciales y virtuales en Turrialba para secundaria y bachillerato.",
+  canonical
+} = Astro.props;
+
+const pageTitle = `${title} | ${siteConfig.brandName}`;
+const canonicalUrl = canonical ? new URL(canonical, siteConfig.siteUrl).toString() : undefined;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Literata:opsz,wght@7..72,500;7..72,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
