@@ -6,12 +6,32 @@ const primaryCta = buildWhatsAppUrl(
   "Hola, quiero agendar una clase de prueba y conocer el plan recomendado para mi caso."
 );
 const resourcesUrl = siteConfig.resourcesUrl;
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  name: siteConfig.brandName,
+  description: siteConfig.tagline,
+  url: `${siteConfig.siteUrl}/`,
+  telephone: `+${siteConfig.whatsappNumber}`,
+  areaServed: "Turrialba, Cartago, Costa Rica",
+  availableLanguage: ["es", "en"],
+  sameAs: [resourcesUrl],
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer support",
+    telephone: `+${siteConfig.whatsappNumber}`,
+    areaServed: "CR"
+  }
+};
 ---
 
 <BaseLayout
   title="Lecciones privadas en Turrialba"
   description="Clases privadas presenciales y virtuales para secundaria y bachillerato. Diagnóstico, plan de estudio y repaso estratégico para exámenes."
   canonical="/"
+  ogImage="/images/impacto-1.webp"
+  preloadImage="/images/impacto-1.webp"
+  structuredData={structuredData}
 >
   <header class="topbar">
     <div class="container topbar-inner">
@@ -46,14 +66,17 @@ const resourcesUrl = siteConfig.resourcesUrl;
             </div>
 
             <figure class="hero-figure card">
-              <img
-                src="/images/impacto-1.jpeg"
-                alt="Material de lecciones privadas de ciencias"
-                width="540"
-                height="720"
-                loading="eager"
-                decoding="async"
-              />
+              <picture>
+                <source srcset="/images/impacto-1.webp" type="image/webp" />
+                <img
+                  src="/images/impacto-1.jpeg"
+                  alt="Material de lecciones privadas de ciencias"
+                  width="540"
+                  height="720"
+                  loading="eager"
+                  decoding="async"
+                />
+              </picture>
               <figcaption>{siteConfig.teacherProfile}</figcaption>
             </figure>
           </div>
@@ -153,14 +176,17 @@ const resourcesUrl = siteConfig.resourcesUrl;
           </a>
         </div>
         <figure class="card proof-figure">
-          <img
-            src="/images/impacto-2.jpeg"
-            alt="Material didáctico para práctica guiada"
-            width="540"
-            height="720"
-            loading="lazy"
-            decoding="async"
-          />
+          <picture>
+            <source srcset="/images/impacto-2.webp" type="image/webp" />
+            <img
+              src="/images/impacto-2.jpeg"
+              alt="Material didáctico para práctica guiada"
+              width="540"
+              height="720"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
           <figcaption>
             Sesiones con práctica guiada para traducir teoría en resolución de ejercicios.
           </figcaption>

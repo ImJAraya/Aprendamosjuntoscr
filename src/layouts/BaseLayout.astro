@@ -6,16 +6,23 @@ interface Props {
   title?: string;
   description?: string;
   canonical?: string;
+  ogImage?: string;
+  preloadImage?: string;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
   title = siteConfig.brandName,
   description = "Clases privadas presenciales y virtuales en Turrialba para secundaria y bachillerato.",
-  canonical
+  canonical,
+  ogImage = "/images/impacto-1.webp",
+  preloadImage,
+  structuredData
 } = Astro.props;
 
 const pageTitle = `${title} | ${siteConfig.brandName}`;
-const canonicalUrl = canonical ? new URL(canonical, siteConfig.siteUrl).toString() : undefined;
+const canonicalUrl = canonical ? new URL(canonical, siteConfig.siteUrl).toString() : Astro.url.toString();
+const ogImageUrl = new URL(ogImage, siteConfig.siteUrl).toString();
 ---
 
 <!doctype html>
@@ -25,14 +32,33 @@ const canonicalUrl = canonical ? new URL(canonical, siteConfig.siteUrl).toString
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
-    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CR" />
+    <meta property="og:site_name" content={siteConfig.brandName} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Literata:opsz,wght@7..72,500;7..72,700&display=swap"
       rel="stylesheet"
     />
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} type="image/webp" />}
+    {structuredData && (
+      <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+    )}
   </head>
   <body>
     <slot />
