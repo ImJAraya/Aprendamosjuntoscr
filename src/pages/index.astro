@@ -3,71 +3,238 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { buildWhatsAppUrl, siteConfig } from "@/data/site";
 
 const primaryCta = buildWhatsAppUrl(
-  "Hola, quiero agendar una clase de prueba de lecciones privadas bimodales."
+  "Hola, quiero agendar una clase de prueba y conocer el plan recomendado para mi caso."
 );
 const resourcesUrl = siteConfig.resourcesUrl;
 ---
 
-<BaseLayout title="Lecciones privadas en Turrialba" canonical="/">
-  <header class="hero">
-    <div class="container">
-      <div class="hero-panel">
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <p class="eyebrow">Clases privadas bimodales</p>
-            <h1>Aprender con estrategia, no con estrés.</h1>
-            <p>
-              Base Astro lista. En esta fase dejamos la arquitectura y la dirección visual que
-              usaremos para convertir esta página en una landing comercial enfocada en WhatsApp.
-            </p>
-            <div class="btn-row">
-              <a class="btn btn-primary" href={primaryCta} target="_blank" rel="noopener noreferrer">
-                Escribir por WhatsApp
-              </a>
-              <a class="btn btn-secondary" href={resourcesUrl} target="_blank" rel="noopener noreferrer">
-                Ver recursos gratuitos
-              </a>
-            </div>
-          </div>
-
-          <div class="card" aria-label="Datos base del servicio">
-            <p class="eyebrow">Configuración central</p>
-            <p><strong>Marca:</strong> {siteConfig.brandName}</p>
-            <p><strong>Ubicación:</strong> {siteConfig.location}</p>
-            <p><strong>Materias:</strong> {siteConfig.subjects.join(" · ")}</p>
-          </div>
-        </div>
-      </div>
+<BaseLayout
+  title="Lecciones privadas en Turrialba"
+  description="Clases privadas presenciales y virtuales para secundaria y bachillerato. Diagnóstico, plan de estudio y repaso estratégico para exámenes."
+  canonical="/"
+>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#inicio">{siteConfig.brandName}</a>
+      <a class="btn btn-primary" href={primaryCta} target="_blank" rel="noopener noreferrer">
+        Agendar por WhatsApp
+      </a>
     </div>
   </header>
 
-  <main>
-    <section class="section" id="beneficios">
+  <main id="inicio">
+    <section class="hero section">
       <div class="container">
-        <p class="eyebrow">Fase 1</p>
-        <h2 class="section-title">Esqueleto listo para la reinvención completa</h2>
-        <p class="section-lead">
-          En el siguiente commit se reemplaza este contenido temporal por la landing final de alta
-          conversión con copy comercial, prueba social, pricing y FAQ.
-        </p>
+        <div class="hero-panel">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <p class="eyebrow">{siteConfig.location} · Modalidad presencial y virtual</p>
+              <h1>Sube tu rendimiento académico con clases que sí aterrizan los conceptos.</h1>
+              <p>
+                {siteConfig.tagline}. Trabajamos con una metodología clara: diagnóstico, plan y
+                práctica guiada para mejorar resultados sin saturar al estudiante.
+              </p>
+              <div class="btn-row">
+                <a class="btn btn-primary" href={primaryCta} target="_blank" rel="noopener noreferrer">
+                  Quiero mi diagnóstico
+                </a>
+                <a class="btn btn-secondary" href={resourcesUrl} target="_blank" rel="noopener noreferrer">
+                  Ver recursos gratuitos
+                </a>
+              </div>
+              <p class="mini-note">Respuesta por WhatsApp en horario de atención.</p>
+            </div>
 
-        <div class="grid-2" style="margin-top:1.5rem;">
-          <article class="card">
-            <h3>Asset curado 1</h3>
-            <img src="/images/impacto-1.jpeg" alt="Material de aprendizaje" width="540" height="720" />
+            <figure class="hero-figure card">
+              <img
+                src="/images/impacto-1.jpeg"
+                alt="Material de lecciones privadas de ciencias"
+                width="540"
+                height="720"
+                loading="eager"
+                decoding="async"
+              />
+              <figcaption>{siteConfig.teacherProfile}</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="beneficios-title">
+      <div class="container">
+        <p class="eyebrow">Enfoque de trabajo</p>
+        <h2 class="section-title" id="beneficios-title">Lo que hace diferente estas clases</h2>
+        <div class="feature-grid" style="margin-top:1.5rem;">
+          {
+            siteConfig.benefits.map((item) => (
+              <article class="card feature-card">
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </article>
+            ))
+          }
+        </div>
+
+        <aside class="resources-callout card" style="margin-top:1.5rem;">
+          <h3>Refuerza entre clases con recursos prácticos</h3>
+          <p>
+            Si quieres practicar por tu cuenta, ya tienes una biblioteca externa con guías,
+            ejercicios y material de apoyo.
+          </p>
+          <a class="btn btn-secondary" href={resourcesUrl} target="_blank" rel="noopener noreferrer">
+            Abrir recursos
+          </a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-tint" aria-labelledby="materias-title">
+      <div class="container split-grid">
+        <div>
+          <p class="eyebrow">Materias cubiertas</p>
+          <h2 class="section-title" id="materias-title">Refuerzo académico en áreas críticas</h2>
+          <p class="section-lead">
+            Clases para estudiantes de secundaria y bachillerato en las materias con mayor impacto
+            en promoción y exámenes.
+          </p>
+          <ul class="subject-cloud" role="list">
+            {siteConfig.subjects.map((subject) => <li>{subject}</li>)}
+          </ul>
+        </div>
+
+        <div class="stack">
+          <article class="card mode-card">
+            <h3>Modalidad presencial</h3>
+            <p>Espacio tranquilo en Turrialba, ideal para sesiones enfocadas y práctica continua.</p>
           </article>
-          <article class="card">
-            <h3>Asset curado 2</h3>
-            <img src="/images/impacto-2.jpeg" alt="Ejercicios guiados" width="540" height="720" />
+          <article class="card mode-card">
+            <h3>Modalidad virtual</h3>
+            <p>
+              Sesiones online con dinámica activa, explicación paso a paso y ejercicios aplicados en
+              tiempo real.
+            </p>
           </article>
+          <article class="card mode-card">
+            <h3>Repasos pre-examen</h3>
+            <p>Bloques intensivos para consolidar temas clave antes de una prueba importante.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="metodo-title">
+      <div class="container">
+        <p class="eyebrow">Metodología</p>
+        <h2 class="section-title" id="metodo-title">Proceso simple, resultados sostenibles</h2>
+        <div class="feature-grid" style="margin-top:1.5rem;">
+          {
+            siteConfig.method.map((step) => (
+              <article class="card feature-card">
+                <h3>{step.title}</h3>
+                <p>{step.detail}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tint" aria-labelledby="confianza-title">
+      <div class="container split-grid">
+        <div>
+          <p class="eyebrow">Confianza</p>
+          <h2 class="section-title" id="confianza-title">Experiencia docente orientada a progreso real</h2>
+          <ul class="trust-list" role="list">
+            {siteConfig.trustSignals.map((signal) => <li>{signal}</li>)}
+          </ul>
+          <a class="btn btn-primary" href={primaryCta} target="_blank" rel="noopener noreferrer">
+            Hablar ahora por WhatsApp
+          </a>
+        </div>
+        <figure class="card proof-figure">
+          <img
+            src="/images/impacto-2.jpeg"
+            alt="Material didáctico para práctica guiada"
+            width="540"
+            height="720"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>
+            Sesiones con práctica guiada para traducir teoría en resolución de ejercicios.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="precios" aria-labelledby="precios-title">
+      <div class="container">
+        <p class="eyebrow">Precios</p>
+        <h2 class="section-title" id="precios-title">Planes claros para avanzar sin fricción</h2>
+        <div class="pricing-grid" style="margin-top:1.5rem;">
+          {
+            siteConfig.pricing.map((plan) => (
+              <article class="card pricing-card">
+                <h3>{plan.name}</h3>
+                <p class="price-tag">{plan.priceLabel}</p>
+                <p>{plan.note}</p>
+                <ul role="list">
+                  {plan.highlights.map((item) => <li>{item}</li>)}
+                </ul>
+                <a class="btn btn-primary" href={primaryCta} target="_blank" rel="noopener noreferrer">
+                  Solicitar este plan
+                </a>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tint" aria-labelledby="faq-title">
+      <div class="container">
+        <p class="eyebrow">Preguntas frecuentes</p>
+        <h2 class="section-title" id="faq-title">Resolvamos tus dudas antes de empezar</h2>
+        <div class="faq-list" style="margin-top:1.5rem;">
+          {
+            siteConfig.faq.map((item) => (
+              <details class="card faq-item">
+                <summary>{item.question}</summary>
+                <p>{item.answer}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section final-cta" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="card cta-box">
+          <p class="eyebrow">Siguiente paso</p>
+          <h2 class="section-title" id="cta-title">Agenda tu sesión y construyamos el plan ideal.</h2>
+          <p class="section-lead">
+            Escríbeme por WhatsApp y te respondo con disponibilidad, modalidad recomendada y primer
+            objetivo académico.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn-primary" href={primaryCta} target="_blank" rel="noopener noreferrer">
+              Iniciar por WhatsApp
+            </a>
+            <a class="btn btn-secondary" href={resourcesUrl} target="_blank" rel="noopener noreferrer">
+              Ir a recursos
+            </a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="container">
-      <p>© {new Date().getFullYear()} {siteConfig.brandName}. Proyecto en reinvención por fases.</p>
+    <div class="container footer-inner">
+      <p>© {new Date().getFullYear()} {siteConfig.brandName} · {siteConfig.location}</p>
+      <a href={resourcesUrl} target="_blank" rel="noopener noreferrer">Recursos gratuitos</a>
     </div>
   </footer>
 </BaseLayout>
